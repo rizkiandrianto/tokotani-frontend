@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="3659 8026 11.963 11.215">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #999;
+      }
+    </style>
+  </defs>
+  <g id="Group_592" data-name="Group 592" transform="translate(3659 8026)">
+    <g id="Group_181" data-name="Group 181">
+      <g id="Group_177" data-name="Group 177" transform="translate(0 0.748)">
+        <path id="Path_107" data-name="Path 107" class="cls-1" d="M10.094,12.468H1.869A1.851,1.851,0,0,1,0,10.6V3.869A1.851,1.851,0,0,1,1.869,2h8.224a1.851,1.851,0,0,1,1.869,1.869V10.6A1.851,1.851,0,0,1,10.094,12.468ZM1.869,2.748A1.1,1.1,0,0,0,.748,3.869V10.6A1.1,1.1,0,0,0,1.869,11.72h8.224A1.1,1.1,0,0,0,11.215,10.6V3.869a1.1,1.1,0,0,0-1.122-1.122Z" transform="translate(0 -2)"/>
+      </g>
+      <g id="Group_178" data-name="Group 178" transform="translate(0.374 3.551)">
+        <rect id="Rectangle_136" data-name="Rectangle 136" class="cls-1" width="11.215" height="0.748"/>
+      </g>
+      <g id="Group_179" data-name="Group 179" transform="translate(3.103)">
+        <rect id="Rectangle_137" data-name="Rectangle 137" class="cls-1" width="0.748" height="2.393"/>
+      </g>
+      <g id="Group_180" data-name="Group 180" transform="translate(7.963)">
+        <rect id="Rectangle_138" data-name="Rectangle 138" class="cls-1" width="0.748" height="2.393"/>
+      </g>
+    </g>
+  </g>
+</svg>

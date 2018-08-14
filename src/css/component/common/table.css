@@ -1,0 +1,166 @@
+.
+table tbody tr:nth-child(even) {
+  background-color: #F7F7F7; }
+
+@media (min-width: 480px) {
+  .box-table {
+    overflow: scroll; } }
+
+@media (min-width: 992px) {
+  .box-table {
+    overflow: unset; } }
+
+.box-table table {
+  border-top: 1px solid #D6D6D6;
+  border-collapse: collapse;
+  width: 100%; }
+  .box-table table thead {
+    border-bottom: 1px solid #D6D6D6; }
+    .box-table table thead tr th {
+      display: none;
+      padding: 14px 14px 14px 14px;
+      text-align: left;
+      white-space: nowrap; }
+      @media (min-width: 480px) {
+        .box-table table thead tr th:first-child {
+          padding: 0 0 0 27px; } }
+      .box-table table thead tr th:last-child {
+        text-align: center; }
+      @media (min-width: 480px) {
+        .box-table table thead tr th {
+          display: table-cell; } }
+  .box-table table tbody {
+    border-bottom: 1px solid #D6D6D6; }
+    .box-table table tbody tr {
+      height: 56px; }
+      .box-table table tbody tr td {
+        position: relative;
+        display: block;
+        text-align: left;
+        padding: 0 25px;
+        line-height: 21px; }
+        @media (min-width: 480px) {
+          .box-table table tbody tr td {
+            padding: 0 15px; } }
+        @media (max-width: 480px) {
+          .box-table table tbody tr td .row-flex.flex-center.flex-xs, .box-table table tbody tr td .flex-center.flex-xs.tag-wrapper {
+            margin-top: -20px;
+            justify-content: start;
+            padding-left: calc(6.5em - 5px); } }
+        @media (min-width: 480px) {
+          .box-table table tbody tr td {
+            line-height: 20px; } }
+        .box-table table tbody tr td:first-child {
+          font-weight: 600;
+          padding-top: 0px; }
+          @media (min-width: 480px) {
+            .box-table table tbody tr td:first-child {
+              padding: 0 0 0 27px; } }
+          @media (max-width: 480px) {
+            .box-table table tbody tr td:first-child .block {
+              position: absolute;
+              padding-left: 6.5em;
+              top: 0;
+              margin-top: 20px; } }
+        .box-table table tbody tr td:last-child {
+          padding-bottom: 20px; }
+          @media (min-width: 480px) {
+            .box-table table tbody tr td:last-child {
+              padding: 0px; } }
+        .box-table table tbody tr td:before {
+          content: attr(data-th) ": ";
+          font-weight: bold;
+          width: 6.5em;
+          display: inline-block; }
+          @media (min-width: 480px) {
+            .box-table table tbody tr td:before {
+              display: none; } }
+        @media (min-width: 480px) {
+          .box-table table tbody tr td {
+            display: table-cell; } }
+        @media (max-width: 480px) {
+          .box-table table tbody tr td .block {
+            position: absolute;
+            padding-left: 6.5em;
+            top: 0; } }
+        .box-table table tbody tr td .block.block-btn {
+          padding: 10px 5px; }
+          .box-table table tbody tr td .block.block-btn .box-btn {
+            padding: 5px; }
+            .box-table table tbody tr td .block.block-btn .box-btn .btn-green {
+              height: 30px; }
+    .box-table table tbody .list-grey {
+      background-color: #F7F7F7; }
+
+.box-footer-table {
+  margin: 0 0 5px 0; }
+  .box-footer-table .footer-table {
+    padding-top: 10px;
+    padding-bottom: 40px;
+    width: 100%;
+    border-bottom: 1px solid #D6D6D6; }
+    .box-footer-table .footer-table .text-footer {
+      padding: 20px 0 0 27px; }
+      @media (max-width: 480px) {
+        .box-footer-table .footer-table .text-footer {
+          padding: 0px 25px;
+          text-align: center;
+          margin-bottom: 10px; } }
+    @media (min-width: 480px) {
+      .box-footer-table .footer-table {
+        height: 56px;
+        padding-bottom: 0px; } }
+  @media (min-width: 480px) {
+    .box-footer-table .box-pagination {
+      width: 200px; } }
+  .box-footer-table .box-pagination .pagination-content {
+    text-align: center;
+    right: 27px;
+    margin: -43px 0 0 0; }
+    @media (min-width: 480px) {
+      .box-footer-table .box-pagination .pagination-content {
+        position: absolute;
+        text-align: unset; } }
+    .box-footer-table .box-pagination .pagination-content .pagination .active {
+      border-radius: 50px; }
+    .box-footer-table .box-pagination .pagination-content .pagination li {
+      padding: 0 0 0 30px;
+      display: inline-block;
+      list-style: none; }
+      .box-footer-table .box-pagination .pagination-content .pagination li:first-child {
+        position: relative;
+        margin: -10px 0 0 0; }
+      .box-footer-table .box-pagination .pagination-content .pagination li.active > a {
+        color: #C54A6C; }
+      @media (max-width: 480px) {
+        .box-footer-table .box-pagination .pagination-content .pagination li.previous {
+          padding: 0; } }
+      @media (max-width: 480px) {
+        .box-footer-table .box-pagination .pagination-content .pagination li.previous > a {
+          margin: 0px !important; } }
+    .box-footer-table .box-pagination .pagination-content .pagination li > a, .box-footer-table .box-pagination .pagination-content .pagination li > span {
+      cursor: pointer;
+      border: none;
+      border-radius: 50px;
+      margin-left: 5px !important; }
+      .box-footer-table .box-pagination .pagination-content .pagination li > a:active, .box-footer-table .box-pagination .pagination-content .pagination li > a:focus, .box-footer-table .box-pagination .pagination-content .pagination li > span:active, .box-footer-table .box-pagination .pagination-content .pagination li > span:focus {
+        outline: none;
+        border: none; }
+    .box-footer-table .box-pagination .pagination-content .pagination .box-lable {
+      border: 1px solid #DDDDDD;
+      width: 26px;
+      height: 26px;
+      display: inline-block; }
+      .box-footer-table .box-pagination .pagination-content .pagination .box-lable img {
+        margin: 8px 0 0 9px;
+        width: 6px;
+        height: auto; }
+
+    .table-penjualan {
+    margin: 0 0 5px 0; 
+    padding-top: 150px;
+    padding-bottom: 20px;
+    padding-left: 200px;
+
+    width: 80%;
+    }

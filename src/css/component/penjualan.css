@@ -1,0 +1,25 @@
+.user-access {
+  width: 100%;
+  height: 100%; }
+  .user-access .user-access-container.no-content {
+    margin-top: 150px; }
+    .user-access .user-access-container.no-content .box-btn {
+      max-width: 150px;
+      margin: 20px auto; }
+    .user-access .user-access-container.no-content img {
+      margin-left: -15px; }
+  @media (min-width: 480px) {
+    .user-access {
+      position: absolute; } }
+  @media (min-width: 992px) {
+    .user-access {
+      margin-top: 75px; } }
+  @media (max-width: 480px) {
+    .user-access .box-top {
+      overflow: hidden; } }
+  .user-access .box-top .pull-left.row-flex, .user-access .box-top .pull-left.tag-wrapper {
+    padding: 0 25px;
+    width: calc(100% - 50px); }
+    @media (min-width: 480px) {
+      .user-access .box-top .pull-left.row-flex, .user-access .box-top .pull-left.tag-wrapper {
+        padding: 0; } }

@@ -1,0 +1,58 @@
+.login-comp {
+  z-index: 10;
+  zoom: 1.1; }
+  .login-comp .container-login {
+    width: 100%;
+    height: 101vh; }
+    .login-comp .container-login .box-form-login {
+      margin: 0 auto 0 auto;
+      padding: 150px 0 0 0;
+      max-width: 390px; }
+      .login-comp .container-login .box-form-login .content {
+        background-color: #FFFFFF;
+        width: 300px;
+        margin: auto;
+        height: 390px; }
+        @media (min-width: 480px) {
+          .login-comp .container-login .box-form-login .content {
+            width: 390px; } }
+        .login-comp .container-login .box-form-login .content .box-typeface-image {
+          margin: 0 auto 0 auto;
+          padding: 30px 0 0 0;
+          max-width: 250px; }
+          .login-comp .container-login .box-form-login .content .box-typeface-image .typeface-image {
+            width: 100%; }
+        .login-comp .container-login .box-form-login .content .title {
+          margin: 13px 0 0 0;
+          text-align: center;
+          font-size: 15px;
+          font-weight: 700;
+          color: #767676; }
+        .login-comp .container-login .box-form-login .content .form {
+          margin: 30px 0 0 0;
+          padding: 0 20px;
+          position: relative; }
+          .login-comp .container-login .box-form-login .content .form .text-danger {
+            font-size: 12px;
+            text-align: center;
+            top: -22px;
+            left: 50%;
+            margin-left: -107px;
+            position: absolute; }
+          @media (min-width: 480px) {
+            .login-comp .container-login .box-form-login .content .form {
+              padding: 0 40px; } }
+          .login-comp .container-login .box-form-login .content .form form .form-input {
+            margin: 0 0 13px 0; }
+          .login-comp .container-login .box-form-login .content .form form .add-checkbox {
+            margin: 0px 0 0 0;
+            float: left; }
+          .login-comp .container-login .box-form-login .content .form form .remember-me {
+            margin: -1.5px 0 0 20px; }
+          .login-comp .container-login .box-form-login .content .form form .block-checkbox {
+            margin: 5px 0 15px -30px; }
+        .login-comp .container-login .box-form-login .content .forgot-password {
+          margin: 15px 0 0 0;
+          text-align: center; }
+          .login-comp .container-login .box-form-login .content .forgot-password a {
+            text-decoration: none; }

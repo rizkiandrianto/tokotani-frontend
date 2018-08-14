@@ -1,0 +1,58 @@
+.gantikatasandi-comp {
+  z-index: 10;
+  zoom: 1.1; }
+  .gantikatasandi-comp .container-gantikatasandi {
+    width: 100%;
+    height: 101vh; }
+    .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi {
+      margin: 0 auto 0 auto;
+      padding: 150px 0 0 0;
+      max-width: 390px; }
+      .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content {
+        background-color: #FFFFFF;
+        width: 300px;
+        margin: auto;
+        height: 320px; }
+        @media (min-width: 480px) {
+          .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content {
+            width: 390px; } }
+        .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content .box-typeface-image {
+          margin: 0 auto 0 auto;
+          padding: 30px 0 0 0;
+          max-width: 250px; }
+          .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content .box-typeface-image .typeface-image {
+            width: 100%; }
+        .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content .title {
+          margin: 13px 0 0 0;
+          text-align: center;
+          font-size: 15px;
+          font-weight: 700;
+          color: #767676; }
+        .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content .form {
+          margin: 30px 0 0 0;
+          padding: 0 20px;
+          position: relative; }
+          .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content .form .text-danger {
+            font-size: 12px;
+            text-align: center;
+            top: -22px;
+            left: 50%;
+            margin-left: -107px;
+            position: absolute; }
+          @media (min-width: 480px) {
+            .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content .form {
+              padding: 0 40px; } }
+          .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content .form form .form-input {
+            margin: 0 0 13px 0; }
+          .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content .form form .add-checkbox {
+            margin: 0px 0 0 0;
+            float: left; }
+          .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content .form form .remember-me {
+            margin: -1.5px 0 0 20px; }
+          .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content .form form .block-checkbox {
+            margin: 5px 0 15px -30px; }
+        .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content .forgot-password {
+          margin: 15px 0 0 0;
+          text-align: center; }
+          .gantikatasandi-comp .container-gantikatasandi .box-form-gantikatasandi .content .forgot-password a {
+            text-decoration: none; }

@@ -1,0 +1,121 @@
+.btn, .button-primary, .button-secondary, .btn-green, .btn-orange {
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  cursor: pointer; }
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.button-primary {
+  background-color: #C54A6C !important; }
+  .button-primary:hover {
+    background-color: rgba(255, 62, 77, 0.8); }
+    
+
+.button-secondary {
+  background-color: #CCCCCC; }
+  .button-secondary:hover {
+    background-color: #A7A7A7; }
+  .button-secondary:focus, .button-secondary:active {
+    background-color: #8B8B8B; }
+
+.btn-sm, .btn-outline-sm, .btn-red-sm, .btn-green-sm {
+  width: 30px;
+  height: 30px;
+  outline: none;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 1px; }
+
+.btn-green {
+  background-color: #79BE75;
+  border: none; }
+
+.btn-outline-sm {
+  border-color: #DDDDDD;
+  background-color: white; }
+
+.btn-red-sm {
+  background-color: #C54A6C;
+  border: none; }
+
+.btn-green-sm {
+  background-color: #79BE75;
+  border: none; }
+
+.btn-orange {
+  background-color: #FAA32D; }
+ 
+
+.icon-sm, .icon-create, .icon-delete, .icon-pass, .icon-checklist, .icon-detail {
+  width: 14px;
+  height: 14px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+.icon-create {
+  margin: auto;
+  background-image: url("/images/icon/button_icon/icon_create_grey.svg"); }
+
+.icon-delete {
+  margin: auto;
+  background-image: url("/images/icon/button_icon/icon_delete.svg"); }
+
+.icon-pass {
+  margin: auto;
+  background-image: url("/images/icon/button_icon/password_icon.svg"); }
+
+.icon-checklist {
+  margin: auto;
+  background-image: url("/images/icon/button_icon/icon_check.svg"); }
+
+.icon-detail {
+  margin: auto;
+  background-image: url("/images/icon/button_icon/icon_detail.svg"); }
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #D6D6D6;
+  font-size: 14px; }
+  .btn-file img {
+    height: 12px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 2px; }
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 100%;
+  max-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  cursor: inherit;
+  display: block; }
+
+.btn-red-dash {
+  width: 150px;
+  height: 38px;
+  outline: none;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 1px; }
+
+  .btn-red-dash, .btn-popup{
+     margin-right: 10px;
+     margin-left:  10px;
+     margin-bottom: 15px;
+  }

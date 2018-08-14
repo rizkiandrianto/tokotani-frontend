@@ -1,0 +1,285 @@
+.sideBarMenuContainer {
+    position: fixed;
+    height: 100%;
+
+}
+
+.userMenu {
+    width: 100%;
+    text-align: center;
+    margin-right: 0px;
+    margin-left: 0px;    
+    margin-top: 0px;
+
+}
+.images{
+    width: 52px;
+    height:42px;
+    padding-left:5px;
+    padding-right: 7px;
+    
+
+}
+
+
+
+nav.sidebar :global(.navbar-brand) :global(.glyphicon) {
+    margin-right: 0px;
+
+
+}
+
+
+/*Remove rounded coners*/
+nav.sidebar.:global(navbar) {
+    border-radius: 0px;
+}
+
+nav.sidebar {
+    -webkit-transition: margin 200ms ease-out;
+    -moz-transition: margin 200ms ease-out;
+    -o-transition: margin 200ms ease-out;
+    transition: margin 200ms ease-out;
+}
+
+/* .....NavBar: Icon only with coloring/layout.....*/
+
+/*small/medium side display*/
+@media ( min-width : 768px) {
+
+
+    /*Center Brand*/
+    nav.sidebar.:global(navbar).sidebar>.container :global(.navbar-brand), :global(.navbar)>:global(.container-fluid) :global(.navbar-brand)
+        {
+        margin-left: 0px;
+
+    }
+    /*Center Brand*/
+    nav.sidebar :global(.navbar-brand), nav.sidebar :global(.navbar-header) {
+        margin: 0 auto 0 auto;
+        margin-top: 50px;
+        padding: 0 px 0 0 0;
+        max-width: 300px; 
+        width: 100%;
+        height: 100%; 
+    }
+
+    /*Center Icons*/
+    nav.sidebar a {
+        padding-right: 13px;
+    }
+
+    /*adds border top to first nav box */
+    nav.sidebar :global(.navbar-nav)>li:first-child {
+        border-top: 0px #e5e5e5 solid;
+    }
+
+    /*adds border to bottom nav boxes*/
+    nav.sidebar :global(.navbar-nav)>li {
+        border-bottom: 0px #e5e5e5 solid;
+    }
+  
+
+    /*allows nav box to use 100% width*/
+    nav.sidebar :global(.navbar-collapse), nav.sidebar :global(.container-fluid) {
+        padding: 0 0px 0 0px;
+    }
+
+
+    /*gives sidebar width/height*/
+    nav.sidebar {
+        width: 85px;
+        height: 100%;
+        margin-left: -160px;
+        float: left;
+        z-index: 8000;
+        margin-bottom: 0px;
+        transition: .35s all ease;
+    }
+
+    /*give sidebar 100% width;*/
+    nav.sidebar li {
+        width: 100%;
+    }
+
+    /* Move nav to full on mouse over*/
+    nav.sidebar:hover {
+        margin-left: 0px;
+    }
+    /*for hiden things when navbar hidden*/
+    :global(.forAnimate) {
+        opacity: 0;
+    }
+}
+
+/* .....NavBar: Fully showing nav bar..... */
+@media ( min-width : 1330px) {
+
+    /*Show all nav*/
+    nav.sidebar {
+        margin-left: 0px;
+        float: left;
+    }
+    /*Show hidden items on nav*/
+    nav.sidebar :global(.forAnimate) {
+        opacity: 1;
+    }
+}
+
+nav.sidebar :global(.navbar-nav) :global(.open) :global(.dropdown-menu)>li>a:hover, nav.sidebar :global(.navbar-nav) :global(.open) :global(.dropdown-menu)>li>a:focus
+    {
+    color: #ffffff;
+    background-color: transparent;
+}
+
+nav:hover :global(.forAnimate) {
+    opacity: 1;
+}
+
+section {
+    padding-left: 15px;
+}
+
+
+.navbar-default .navbar-brand {
+  color: #FFFFFF !important;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ffffff;
+
+  background-color: transparent;
+}
+.navbar-default .navbar-text {
+  color: #FFFFFF;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #FFFFFF;
+  display: flex;
+  padding-top: 4px;
+  margin:0px 3px 0px 0px;
+  opacity: 0.6;
+
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  opacity: 1;
+  color: #fff ;
+  font-weight: Bold ;
+  background-color: transparent;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+}
+.navbar-default .navbar-nav > .disabled > a,
+.navbar-default .navbar-nav > .disabled > a:hover,
+.navbar-default .navbar-nav > .disabled > a:focus {
+  color: #ccc;
+  background-color: transparent;
+}
+.navbar-default .navbar-toggle {
+  border-color: #ddd;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #ddd;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #888;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #e7e7e7;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #777;
+
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #333;
+    background-color: transparent;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #555;
+    background-color: #e7e7e7;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #ccc;
+    background-color: transparent;
+  }
+}
+
+.navbar-header {
+    display: flex;
+    float: left;
+    padding-bottom: 10px;
+  }
+.logo{
+
+    width: 70px;
+    height:70px;
+    padding-left: 15px;
+    opacity: 0.6;
+    margin-bottom: 10px;
+
+
+}
+.textlogo{
+
+    width: 65%;
+    height:70%;
+    padding-left: 5px;
+    margin-top: 20px;
+
+}
+
+.none{
+    margin-top: 8px;
+}
+.sideBarMenuContainer > span {
+    display: none;
+}
+
+.sideBarMenuContainer.open > span {
+    display: block;
+}
+
+.sideBarMenuContainer .textlogo {
+    display: none;
+}
+
+.sideBarMenuContainer.open .textlogo {
+    display: block;
+}
+
+.sideBarMenuContainer.open .sidebar{
+    width: 220px !important;
+}
+
+.sideBarMenuContainer .none{
+    display: none;
+    color: white;
+
+}
+.sideBarMenuContainer.open .none{
+    display: block;
+    
+
+}
+
+
