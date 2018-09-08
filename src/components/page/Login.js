@@ -28,6 +28,9 @@ export default class Login extends Component {
             localStorage.setItem('tokotani_login', res.data[0])
             this.props.history.push('/petani/penjualan')
         })
+        .catch(err => {
+            alert('error login');
+        })
     }
 
     changeHandler(name) {

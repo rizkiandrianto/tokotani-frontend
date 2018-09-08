@@ -41,8 +41,6 @@ const renderHome = () => {
   return penjualanPetani;
 }
 
-debugger;
-
 const Main = () => (
   <main>
     <Switch>
