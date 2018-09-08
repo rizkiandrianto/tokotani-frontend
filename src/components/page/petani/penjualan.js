@@ -17,7 +17,7 @@ export default class penjualan extends Component{
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleBatal = this.handleBatal.bind(this), this.handleShow.bind(this);
+    this.handleBatal = this.handleBatal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
@@ -38,7 +38,7 @@ export default class penjualan extends Component{
   }
 
   handleShow() {
-    this.setState({ show: !this.state.true});
+    this.setState({ show: true });
   }
 
 
@@ -56,22 +56,22 @@ render() {
         <div>
         <Header title="Penjualan" />
         <Sidebar/>
-        <Header/> 
-         
-        
+        <Header/>
+
+
         <div className="box-table table-penjualan">
             <div className="box-top row-flex flex-space">
               <p className="count-item"> 2 Produk</p>
-           
-          <select 
+
+          <select
             className="dropdown form-input"
-              value={this.state.user} onChange={(event) => this.setState({user: event.target.value})}>                                    
+              value={this.state.user} onChange={(event) => this.setState({user: event.target.value})}>
                 <option value="10">10 Entri Per Halaman</option>
                 <option value="20">20 Entri Per Halaman</option>
                 <option value="30">30 Entri Per Halaman</option>
                 <option value="40">40 Entri Per Halaman</option>
           </select>
-          <input 
+          <input
             className="search-inPage input-form"
             name="search-inPage"
             type="text"
@@ -93,7 +93,7 @@ render() {
             </p>
           <div className="row-flex col-2 ">
                 <input
-                  inputId="judulProduk" 
+                  inputId="judulProduk"
                   type="text"
                   placeholder="Judul Produk"
                   class="form-control"
@@ -101,9 +101,9 @@ render() {
                   handleChange={this._handleChange}
                   required="true"
                 />
-                <select 
+                <select
                   className="dropdown form-control dropdownText"
-                  value={this.state.kategori} onChange={(event) => this.setState({kategori: event.target.value})}>                                    
+                  value={this.state.kategori} onChange={(event) => this.setState({kategori: event.target.value})}>
                   <option>Kategori</option>
                   <option value="ppo">Pupuk, Pestisida, Obat</option>
                   <option value="bibit">Bibit Tanaman</option>
@@ -114,9 +114,9 @@ render() {
          </div>
          <br/>
          <div className="row-flex col-3 ">
-                <select 
+                <select
                   className="dropdown form-control dropdownText"
-                  value={this.state.satuan} onChange={(event) => this.setState({satuan: event.target.value})}>                                    
+                  value={this.state.satuan} onChange={(event) => this.setState({satuan: event.target.value})}>
                   <option>Satuan</option>
                   <option value="kg">Kg</option>
                   <option value="ton">Ton</option>
@@ -124,7 +124,7 @@ render() {
                   <option value="unit">Unit</option>
                 </select>
                 <input
-                  inputId="minPembelian" 
+                  inputId="minPembelian"
                   type="text"
                   placeholder="Minimal Pembelian"
                   class="form-control"
@@ -133,29 +133,29 @@ render() {
                   required="true"
                 />
                 <input
-                  inputId="jumlahStok" 
+                  inputId="jumlahStok"
                   type="text"
                   placeholder="Jumlah Stok"
                   class="form-control"
                   ref="jumlahStok"
                   handleChange={this._handlejumlahStok}
                   required="true"
-                />      
+                />
           </div>
           <br/>
           <div className="row-flex col-3 ">
-          
+
                 <input
-                  inputId="HargaMin" 
+                  inputId="HargaMin"
                   type="text"
                   placeholder="Harga Minimal"
                   class="form-control"
                   ref="HargaMin"
                   handleChange={this._handleHargaMin}
                   required="true"
-                /> 
+                />
                 <input
-                  inputId="hargaMax" 
+                  inputId="hargaMax"
                   type="text"
                   placeholder="Harga Maksimal"
                   class="form-control"
@@ -163,9 +163,9 @@ render() {
                   handleChange={this._handleHargaMax}
                   required="true"
                 />
-                <select 
+                <select
                   className="dropdown form-control dropdownText"
-                  value={this.state.transportasi} onChange={(event) => this.setState({transportasi: event.target.value})}>                                    
+                  value={this.state.transportasi} onChange={(event) => this.setState({transportasi: event.target.value})}>
                   <option>Transportasi</option>
                   <option value="mitraPetani">Mitra Petani</option>
                   <option value="no">Tidak Ada</option>
@@ -203,7 +203,7 @@ render() {
           />
         </div>
         </Modal.Body>
- 
+
         <div className="row-flex col-2">
               <button type="submit" className="button-primary btn-red-dash btn-popup" onClick={this.handleSubmit}>Jual Produk</button>
               <button type="submit" className="button-secondary btn-red-dash btn-popup" onClick={this.handleBatal}>Batal</button>
@@ -249,7 +249,7 @@ render() {
             </tr>
           </tbody>
         </table>
-        </div> 
+        </div>
 
 
       </div>
