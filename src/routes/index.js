@@ -28,16 +28,26 @@ import hubungiKamiPerusahaan from '../components/page/perusahaan/hubungiKami'
 import transPenjualanPerusahaan from '../components/page/perusahaan/transPenjualan'
 import pesanPerusahaan from '../components/page/perusahaan/pesan'
 
+import helpers from '../helpers'
+
+const { IS_LOGGEDIN } = helpers;
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
 // and /schedule routes will match any pathname that starts
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
+const renderHome = () => {
+  return penjualanPetani;
+}
+
+debugger;
+
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={login}/>
+      <Route exact path='/' component={IS_LOGGEDIN ? renderHome() : login}/>
+      <Route exact path='/home' component={home}/>
       <Route path='/login' component={login}/>
       <Route path='/register' component={register}/>
       <Route path='/lupaPassword' component={lupakatasandi}/>
@@ -53,7 +63,7 @@ const Main = () => (
       <Route path='/petani/transPenjualan' component={transPenjualanPetani}/>
       <Route path='/petani/pesan' component={pesanPetani}/>
 
-      
+
       <Route path='/mitra/penjualan' component={penjualanMitra}/>
       <Route path='/mitra/mitraBerjejaring' component={mitraBerjejaring}/>
       <Route path='/mitra/hubungiKami' component={hubungiKamiMitra}/>
@@ -63,7 +73,7 @@ const Main = () => (
       <Route path='/perusahaan/hubungiKami' component={hubungiKamiPerusahaan}/>
       <Route path='/perusahaan/pesan' component={pesanPerusahaan}/>
       <Route path='/perusahaan/transPenjualan' component={transPenjualanPerusahaan}/>
-      
+
 
 
     </Switch>
