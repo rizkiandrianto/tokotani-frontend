@@ -30,7 +30,7 @@ import pesanPerusahaan from '../components/page/perusahaan/pesan'
 
 import helpers from '../helpers'
 
-const { IS_LOGGEDIN } = helpers;
+const { IS_LOGGEDIN, PROFILE, USER_LEVEL } = helpers;
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -38,24 +38,48 @@ const { IS_LOGGEDIN } = helpers;
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
 const renderHome = () => {
-  return penjualanPetani;
-}
-
-const renderNeedAuth = () => {
-
+  switch (PROFILE.level) {
+    case '1':
+      return penjualanPetani;
+    case '2':
+      return hubungiKamiNonPetani;
+    case '3':
+      return penjualanPerusahaan;
+    case '4':
+      return penjualanMitra;
+    default:
+      break;
+  }
+  return ;
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={
-      (props) => IS_LOGGEDIN ? <Component {...props} /> :
-      <Redirect to={{
-        pathname: '/login',
-        state: {
-          from: props.location
+      (props) => {
+        console.log(props)
+        if (IS_LOGGEDIN) {
+          if (props.location.pathname.startsWith(`/${USER_LEVEL()}`)) {
+            return <Component {...props} />
+          }
+
+          return <Redirect to={{
+            pathname: `/${USER_LEVEL()}/penjualan`,
+            state: {
+              from: props.location
+            }
+          }} />
         }
-      }} />
+        return (
+          <Redirect to={{
+            pathname: '/login',
+            state: {
+              from: props.location
+            }
+          }} />
+        )
+    }
     } />
 )
 

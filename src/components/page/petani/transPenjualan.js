@@ -22,16 +22,25 @@ export default class transPenjualan extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleBatal = this.handleBatal.bind(this), this.handleShow.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleProses = this.handleProses.bind(this);
 
     this.state = {
       show: false,
-      transaksi: [],
-      konfirmasi: []
+      transaksi: []
     };
   }
 
   componentDidMount() {
     this.getData();
+  }
+
+  handleProses(id) {
+    return () => {
+      Request.get(`/KonfirmasiPengiriman?id_tp=${id}`)
+      .then(res => {
+        this.getData();
+      })
+    };
   }
 
   handleClose() {
@@ -62,7 +71,7 @@ export default class transPenjualan extends Component {
   renderTransaksiPenjualan() {
     const { transaksi } = this.state;
     if (transaksi.length) {
-      return transaksi.map((item, index) => (
+      return transaksi.filter(x => x.status == 1).map((item, index) => (
         <div class="social-share-wrap" key={index}>
           <div class="cover">
             <center>
@@ -80,7 +89,15 @@ export default class transPenjualan extends Component {
               <p><b>Status :</b>&nbsp;&nbsp;&nbsp;<i>{item.status}</i></p>
             </div>
             <div class="price">Rp.{item.harga}</div>
-            <a class="buy" id="uncontrolled-tab-example-tab-2" role="tab" target="uncontrolled-tab-example-tab-2"><i class="fa fa-shopping-cart"></i>Proses </a>
+            <a
+            class="buy"
+            id="uncontrolled-tab-example-tab-2"
+            role="tab"
+            target="uncontrolled-tab-example-tab-2"
+            onClick={this.handleProses(item.id_transPenjualan)}
+            >
+              <i class="fa fa-shopping-cart"></i>Proses
+            </a>
           </div>
         </div>
       ))
@@ -89,9 +106,9 @@ export default class transPenjualan extends Component {
   }
 
   renderKonfirmasiPengiriman() {
-    const { konfirmasi } = this.state;
-    if (konfirmasi.length) {
-      return konfirmasi.map((item, index) => (
+    const { transaksi } = this.state;
+    if (transaksi.length) {
+      return transaksi.filter(x => x.status == 2).map((item, index) => (
         <div class="social-share-wrap ">
           <div class="cover proses">
             <center>
@@ -99,16 +116,16 @@ export default class transPenjualan extends Component {
             </center>
           </div>
           <div class="content" key={index}>
-            <div class="title"><b>Pesanan Dari:</b><t />&nbsp;&nbsp;&nbsp;Ivan Pradana</div>
+            <div class="title"><b>Pesanan Dari:</b><t />&nbsp;&nbsp;&nbsp;{item.nama}</div>
             <div class="text"><b>Alamat:</b>
-              <p>Perumahan Inkopad Blok J1 no. 10, Kabupaten Bogor, Jawa Barat</p>
-              <p><b>Tanggal Pembayaran :</b>&nbsp;&nbsp;&nbsp;20/05/2018 19:00</p>
-              <p><b>Metode Pengiriman :</b>&nbsp;&nbsp;&nbsp;JNE</p>
-              <p><b>Pesanan :</b>&nbsp;&nbsp;&nbsp;Jeruk(3Kg), Kelengkeng(10kg)</p>
-              <p><b>Catatan Untuk Penjual :</b>&nbsp;&nbsp;&nbsp;Dipacking dengan aman ya!</p>
+              <p>{item.alamat}</p>
+              <p><b>Tanggal Pembayaran :</b>&nbsp;&nbsp;&nbsp;{item.tanggal_pembayaran}</p>
+              <p><b>Metode Pengiriman :</b>&nbsp;&nbsp;&nbsp;{item.metode_pengiriman}</p>
+              <p><b>Pesanan :</b>&nbsp;&nbsp;&nbsp;{item.pesanan}</p>
+              <p><b>Catatan Untuk Penjual :</b>&nbsp;&nbsp;&nbsp;{item.catatan}</p>
               <p><b>Status :</b>&nbsp;&nbsp;&nbsp;Menunggu di Proses oleh Penjual</p>
             </div>
-            <div class="price">Rp.75.000</div>
+            <div class="price">Rp.{item.harga}</div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="submit" className="button-primary btn-red-dash" onClick={this.handleShow}>Masukkan Nomor Resi</button>
             <Modal show={this.state.show} onHide={this.handleClose}>
@@ -147,6 +164,58 @@ export default class transPenjualan extends Component {
     return null;
   }
 
+  renderStatusPengiriman() {
+    const { transaksi } = this.state;
+
+    return transaksi.filter(x => x.status == 3).map((item, index) => (
+      <div class="social-share-wrap" key={index}>
+        <div class="cover proses">
+          <center>
+            <img className="imgtranspenjualan" src={`/${'images/man.png'}`} />
+          </center>
+        </div>
+        <div class="content">
+          <div class="title"><b>Pesanan Dari:</b><t />&nbsp;&nbsp;&nbsp;{item.nama}</div>
+          <div class="text"><b>Alamat:</b>
+            <p>{item.alamat}</p>
+            <p><b>Tanggal Pembayaran :</b>&nbsp;&nbsp;&nbsp;{item.tanggal_pembayaran}</p>
+            <p><b>Metode Pengiriman :</b>&nbsp;&nbsp;&nbsp;{item.metode_pengiriman}</p>
+            <p><b>Pesanan :</b>&nbsp;&nbsp;&nbsp;{item.pesanan}</p>
+            <p><b>Catatan Untuk Penjual :</b>&nbsp;&nbsp;&nbsp;{item.catatan}</p>
+            <p><b>Status :</b>&nbsp;&nbsp;&nbsp;<i>Sedang Dalam Pengiriman</i></p>
+          </div>
+          <div class="price">Rp.{item.harga}</div>
+        </div>
+      </div>
+    ))
+  }
+
+  renderDaftarPenjualan() {
+    const { transaksi } = this.state;
+
+    return transaksi.filter(x => x.status == 4).map((item, index) => (
+      <div class="social-share-wrap" key={index}>
+        <div class="cover">
+          <center>
+            <img className="imgtranspenjualan" src={`/${'images/man.png'}`} />
+          </center>
+        </div>
+        <div class="content">
+          <div class="title"><b>Pesanan Dari:</b><t />&nbsp;&nbsp;&nbsp;{item.nama}</div>
+          <div class="text"><b>Alamat:</b>
+            <p>{item.alamat}</p>
+            <p><b>Tanggal Pembayaran :</b>&nbsp;&nbsp;&nbsp;{item.tanggal_pembayaran}</p>
+            <p><b>Metode Pengiriman :</b>&nbsp;&nbsp;&nbsp;{item.metode_pengiriman}</p>
+            <p><b>Pesanan :</b>&nbsp;&nbsp;&nbsp;{item.pesanan}</p>
+            <p><b>Catatan Untuk Penjual :</b>&nbsp;&nbsp;&nbsp;{item.catatan}</p>
+            <p><b>Status :</b>&nbsp;&nbsp;&nbsp;<i>Barang Sudah Di Terima Transaksi Sukses</i></p>
+          </div>
+          <div class="price">Rp.{item.harga}</div>
+        </div>
+      </div>
+    ))
+  }
+
   render() {
     function FieldGroup({ id, label, help, ...props }) {
       return (
@@ -178,47 +247,11 @@ export default class transPenjualan extends Component {
             </Tab>
             <Tab eventKey={3} title="Status Pengiriman" >
               <input class="toggle" id="toggle" type="checkbox" />
-              <div class="social-share-wrap">
-                <div class="cover proses">
-                  <center>
-                    <img className="imgtranspenjualan" src={`/${'images/man.png'}`} />
-                  </center>
-                </div>
-                <div class="content">
-                  <div class="title"><b>Pesanan Dari:</b><t />&nbsp;&nbsp;&nbsp;Ivan Pradana</div>
-                  <div class="text"><b>Alamat:</b>
-                    <p>Perumahan Inkopad Blok J1 no. 10, Kabupaten Bogor, Jawa Barat</p>
-                    <p><b>Tanggal Pembayaran :</b>&nbsp;&nbsp;&nbsp;20/05/2018 19:00</p>
-                    <p><b>Metode Pengiriman :</b>&nbsp;&nbsp;&nbsp;JNE</p>
-                    <p><b>Pesanan :</b>&nbsp;&nbsp;&nbsp;Jeruk(3Kg), Kelengkeng(10kg)</p>
-                    <p><b>Catatan Untuk Penjual :</b>&nbsp;&nbsp;&nbsp;Dipacking dengan aman ya!</p>
-                    <p><b>Status :</b>&nbsp;&nbsp;&nbsp;<i>Sedang Dalam Pengiriman</i></p>
-                  </div>
-                  <div class="price">Rp.75.000</div>
-                </div>
-              </div>
+              {this.renderStatusPengiriman()}
             </Tab>
             <Tab eventKey={4} title="Daftar Penjualan" >
               <input class="toggle" id="toggle" type="checkbox" />
-              <div class="social-share-wrap">
-                <div class="cover">
-                  <center>
-                    <img className="imgtranspenjualan" src={`/${'images/man.png'}`} />
-                  </center>
-                </div>
-                <div class="content">
-                  <div class="title"><b>Pesanan Dari:</b><t />&nbsp;&nbsp;&nbsp;Ivan Pradana</div>
-                  <div class="text"><b>Alamat:</b>
-                    <p>Perumahan Inkopad Blok J1 no. 10, Kabupaten Bogor, Jawa Barat</p>
-                    <p><b>Tanggal Pembayaran :</b>&nbsp;&nbsp;&nbsp;20/05/2018 19:00</p>
-                    <p><b>Metode Pengiriman :</b>&nbsp;&nbsp;&nbsp;JNE</p>
-                    <p><b>Pesanan :</b>&nbsp;&nbsp;&nbsp;Jeruk(3Kg), Kelengkeng(10kg)</p>
-                    <p><b>Catatan Untuk Penjual :</b>&nbsp;&nbsp;&nbsp;Dipacking dengan aman ya!</p>
-                    <p><b>Status :</b>&nbsp;&nbsp;&nbsp;<i>Barang Sudah Di Terima Transaksi Sukses</i></p>
-                  </div>
-                  <div class="price">Rp.75.000</div>
-                </div>
-              </div>
+              {this.renderDaftarPenjualan()}
             </Tab>
           </Tabs>
         </div>
