@@ -32,6 +32,17 @@ import helpers from '../helpers'
 
 const { IS_LOGGEDIN, PROFILE, USER_LEVEL } = helpers;
 
+
+/*
+  ======================= DOKUMENTASI
+
+  USER LEVEL
+  1 = PETANI
+  2 = NON_PETANI
+  3 = PERUSAHAAN
+  4 = MITRA
+ */
+
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
 // and /schedule routes will match any pathname that starts
@@ -104,10 +115,10 @@ const Main = () => (
       <PrivateRoute path='/petani/pesan' component={pesanPetani}/>
 
 
-      <PrivateRoute path='/mitra/penjualan' component={penjualanMitra}/>
+      <PrivateRoute path='/mitra/penjualan' component={penjualanPetani}/>
       <PrivateRoute path='/mitra/mitraBerjejaring' component={mitraBerjejaring}/>
       <PrivateRoute path='/mitra/hubungiKami' component={hubungiKamiMitra}/>
-      <PrivateRoute path='/mitra/transPenjualan' component={transPenjualanMitra}/>
+      <PrivateRoute path='/mitra/transPenjualan' component={transPenjualanPetani}/>
 
       <PrivateRoute path='/perusahaan/penjualan' component={penjualanPerusahaan}/>
       <PrivateRoute path='/perusahaan/hubungiKami' component={hubungiKamiPerusahaan}/>

@@ -12,13 +12,13 @@ const USER_LEVEL = (level) => {
         temp = "petani";
         break;
       case "2":
-        temp = "mitra";
+        temp = "non-petani";
         break;
       case "3":
         temp = "perusahaan";
         break;
       case "4":
-        temp = "non-petani";
+        temp = "mitra";
         break;
       default:
         temp = "petani";
@@ -32,13 +32,13 @@ const USER_LEVEL = (level) => {
           temp = "petani";
           break;
         case "2":
-          temp = "mitra";
+          temp = "non-petani";
           break;
         case "3":
           temp = "perusahaan";
           break;
         case "4":
-          temp = "non-petani";
+          temp = "mitra";
           break;
         default:
           temp = "petani";
