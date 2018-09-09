@@ -2,9 +2,10 @@
 import axios from 'axios';
 
 const IS_LOGGEDIN = localStorage.getItem('tokotani_login');
+const API_SERVER = 'http://localhost/tokotani';
 
 const Request = axios.create({
-  baseURL: 'http://localhost:8080/tokotani/index.php/Tokotani/',
+  baseURL: `${API_SERVER}/index.php/Tokotani/`,
   headers: {
     'Content-Type': 'application/json'
   }
@@ -12,8 +13,9 @@ const Request = axios.create({
 
 const exported = {
   IS_LOGGEDIN,
-  PROFILE: IS_LOGGEDIN ? IS_LOGGEDIN : null,
-  Request: Request
+  PROFILE: IS_LOGGEDIN ? JSON.parse(IS_LOGGEDIN) : null,
+  Request: Request,
+  API_SERVER
 }
 
 export default exported;

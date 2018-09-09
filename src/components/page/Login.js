@@ -25,7 +25,7 @@ export default class Login extends Component {
         })
         .then(res => {
             const data = res.data[0];
-            localStorage.setItem('tokotani_login', res.data[0])
+            localStorage.setItem('tokotani_login', JSON.stringify(res.data[0]))
             this.props.history.push('/petani/penjualan')
         })
         .catch(err => {
