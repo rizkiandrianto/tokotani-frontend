@@ -53,11 +53,11 @@ const renderHome = () => {
     case '1':
       return penjualanPetani;
     case '2':
-      return hubungiKamiNonPetani;
+      return hubungiKamiPetani;
     case '3':
-      return penjualanPerusahaan;
+      return penjualanPetani;
     case '4':
-      return penjualanMitra;
+      return penjualanPetani;
     default:
       break;
   }
