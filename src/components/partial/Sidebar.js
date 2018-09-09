@@ -8,11 +8,15 @@ export default class Sidebar extends Component {
         console.log('clicked')
         var sidebar = document.getElementById('sidebar-menu')
         sidebar.classList.add('open');
+    }
 
+    logout() {
+        localStorage.clear();
+        window.location = '/';
     }
 
     render() {
-        return ( 
+        return (
             <div id="sidebar-menu" className="sideBarMenuContainer">
                 <Navbar fluid className="sidebar">
 
@@ -22,7 +26,7 @@ export default class Sidebar extends Component {
                     </Navbar.Header>
 
                     <Navbar.Collapse>
-                        <Nav>   
+                        <Nav>
                             <NavItem href="/petani/penjualan" eventKey={1}><img className="images" src={`/${'images/penjualan.svg'}`}/><span className="none">Penjualan</span></NavItem>
                             <NavItem href="/petani/pesan" eventKey={2}><img className="images" src={`/${'images/pesan.svg'}`}/><span className="none">Pesan</span></NavItem>
                             <NavItem href="/petani/penjualan" eventKey={3}><img className="images" src={`/${'images/nego.svg'}`}/><span className="none">Negosiasi</span></NavItem>
@@ -30,10 +34,11 @@ export default class Sidebar extends Component {
                             <NavItem href="/petani/transpenjualan" eventKey={5}><img className="images" src={`/${'images/transaksiPenjualan.svg'}`}/><span className="none">Transaksi Penjualan</span></NavItem>
                             <NavItem eventKey={6}><img className="images" src={`/${'images/transaksiPembelian.svg'}`}/><span className="none">Transaksi Pembelian</span></NavItem>
                             <NavItem href="/petani/hubungiKami" eventKey={7}><img className="images" src={`/${'images/hubungiKami.svg'}`}/><span className="none">Hubungi Kami</span></NavItem>
+                            <NavItem eventKey={7} onClick={this.logout}><img className="images" src={`/${'images/right-arrow.svg'}`}/><span className="none">Logout</span></NavItem>
                             <NavItem eventKey={7} onClick={this.toggleSidebar}><img className="images" src={`/${'images/right-arrow.svg'}`}/><span className="none">Tutup</span></NavItem>
                         </Nav>
                     </Navbar.Collapse>
-                
+
                 </Navbar>
             </div>
         );

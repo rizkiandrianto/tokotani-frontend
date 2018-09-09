@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import headerDashboard from '../components/partial/headerDashboard'
 import home from '../components/page/Home'
 import login from '../components/page/Login'
@@ -41,6 +41,24 @@ const renderHome = () => {
   return penjualanPetani;
 }
 
+const renderNeedAuth = () => {
+
+}
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={
+      (props) => IS_LOGGEDIN ? <Component {...props} /> :
+      <Redirect to={{
+        pathname: '/login',
+        state: {
+          from: props.location
+        }
+      }} />
+    } />
+)
+
 const Main = () => (
   <main>
     <Switch>
@@ -52,25 +70,25 @@ const Main = () => (
       <Route path='/gantikatasandi' component={gantikatasandi}/>
 
 
-      <Route path='/non-petani/hubungiKami' component={hubungiKamiNonPetani}/>
-      <Route path='/non-petani/pesan' component={pesanNonPetani}/>
+      <PrivateRoute path='/non-petani/hubungiKami' component={hubungiKamiNonPetani}/>
+      <PrivateRoute path='/non-petani/pesan' component={pesanNonPetani}/>
 
-      <Route path='/petani/penjualan' component={penjualanPetani}/>
-      <Route path='/petani/mitrapetani' component={mitraPetani}/>
-      <Route path='/petani/hubungiKami' component={hubungiKamiPetani}/>
-      <Route path='/petani/transPenjualan' component={transPenjualanPetani}/>
-      <Route path='/petani/pesan' component={pesanPetani}/>
+      <PrivateRoute path='/petani/penjualan' component={penjualanPetani}/>
+      <PrivateRoute path='/petani/mitrapetani' component={mitraPetani}/>
+      <PrivateRoute path='/petani/hubungiKami' component={hubungiKamiPetani}/>
+      <PrivateRoute path='/petani/transPenjualan' component={transPenjualanPetani}/>
+      <PrivateRoute path='/petani/pesan' component={pesanPetani}/>
 
 
-      <Route path='/mitra/penjualan' component={penjualanMitra}/>
-      <Route path='/mitra/mitraBerjejaring' component={mitraBerjejaring}/>
-      <Route path='/mitra/hubungiKami' component={hubungiKamiMitra}/>
-      <Route path='/mitra/transPenjualan' component={transPenjualanMitra}/>
+      <PrivateRoute path='/mitra/penjualan' component={penjualanMitra}/>
+      <PrivateRoute path='/mitra/mitraBerjejaring' component={mitraBerjejaring}/>
+      <PrivateRoute path='/mitra/hubungiKami' component={hubungiKamiMitra}/>
+      <PrivateRoute path='/mitra/transPenjualan' component={transPenjualanMitra}/>
 
-      <Route path='/perusahaan/penjualan' component={penjualanPerusahaan}/>
-      <Route path='/perusahaan/hubungiKami' component={hubungiKamiPerusahaan}/>
-      <Route path='/perusahaan/pesan' component={pesanPerusahaan}/>
-      <Route path='/perusahaan/transPenjualan' component={transPenjualanPerusahaan}/>
+      <PrivateRoute path='/perusahaan/penjualan' component={penjualanPerusahaan}/>
+      <PrivateRoute path='/perusahaan/hubungiKami' component={hubungiKamiPerusahaan}/>
+      <PrivateRoute path='/perusahaan/pesan' component={pesanPerusahaan}/>
+      <PrivateRoute path='/perusahaan/transPenjualan' component={transPenjualanPerusahaan}/>
 
 
 

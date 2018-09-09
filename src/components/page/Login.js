@@ -4,7 +4,7 @@ import '../../css/component/login.css';
 import helpers from '../../helpers';
 import axios from 'axios';
 
-const { Request } = helpers;
+const { Request, USER_LEVEL } = helpers;
 
 export default class Login extends Component {
 	constructor(props){
@@ -26,7 +26,7 @@ export default class Login extends Component {
         .then(res => {
             const data = res.data[0];
             localStorage.setItem('tokotani_login', JSON.stringify(res.data[0]))
-            this.props.history.push('/petani/penjualan')
+            window.location = `/${USER_LEVEL(data.level)}/penjualan`
         })
         .catch(err => {
             alert('error login');

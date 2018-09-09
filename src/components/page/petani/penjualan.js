@@ -42,10 +42,20 @@ export default class penjualan extends Component {
 
   changeForm(name) {
     return (e) => {
+      let files;
+      if (name === 'foto1') {
+        files = e.target.files[0];
+      }
       this.setState({
         form: {
           ...this.state.form,
-          [name]: e.target.value
+          [name]: name == 'foto1' ? e.target.files[0].name : e.target.value
+        }
+      }, () => {
+        if (name === 'foto1') {
+          this.setState({
+            foto1: files
+          });
         }
       });
     };
@@ -60,19 +70,28 @@ export default class penjualan extends Component {
   }
 
   handleSubmit() {
-    Request.post('/tambahPenjualan', {
-      ...this.state.form
-    })
-    .then(res => {
-      const { data } = this.state;
-      data.push(this.state.form);
-      this.setState({
-        show: false,
-        data
-      });
+    const { data, foto1 } = this.state;
+    let dataTemp = new FormData();
+    dataTemp.append('foto1', foto1);
 
-    })
-    .catch(err => console.error(err))
+    Request.post('/coba', dataTemp)
+    .then(e => {
+      Request.post('/tambahPenjualan', {
+        ...this.state.form
+      })
+      .then(res => {
+        let data_ = data;
+        data_.push({...this.state.form});
+        this.setState({
+          show: false,
+          data
+        }, () => {
+          this.getData();
+        });
+
+      })
+      .catch(err => console.error(err))
+    });
   }
 
   handleShow() {
@@ -93,6 +112,10 @@ export default class penjualan extends Component {
   }
 
   componentDidMount() {
+    this.getData();
+  }
+
+  getData() {
     Request.get('/tampilPenjualan')
       .then(res => {
         const { data } = res;
@@ -112,7 +135,7 @@ export default class penjualan extends Component {
         x.deskripsi.toLowerCase().indexOf(search) > -1
       ))
       .map((item, index) => (
-        <tr>
+        <tr key={index}>
           <td><img className="imgtable" src={`${API_SERVER}/images/${item.foto1}`} /></td>
           <td>{item.judul_produk}</td>
           <td>Rp. {item.harga_minimal}</td>
@@ -182,7 +205,6 @@ export default class penjualan extends Component {
               name="search-inPage"
               type="text"
               placeholder="Cari"
-              ref="search"
               value={this.state.search}
               onChange={this.changeSearch}
               /><br />
@@ -201,11 +223,9 @@ export default class penjualan extends Component {
                   </p>
                   <div className="row-flex col-2 ">
                     <input
-                      inputId="judulProduk"
                       type="text"
                       placeholder="Judul Produk"
                       className="form-control"
-                      ref="judulProduk"
                       onChange={this.changeForm('judul_produk')}
                       required="true"
                       value={judul_produk}
@@ -237,21 +257,17 @@ export default class penjualan extends Component {
                       <option value="unit">Unit</option>
                     </select>
                     <input
-                      inputId="minPembelian"
                       type="text"
                       placeholder="Minimal Pembelian"
                       className="form-control"
-                      ref="minPembelian"
                       onChange={this.changeForm('minimal_pembelian')}
                       value={minimal_pembelian}
                       required="true"
                     />
                     <input
-                      inputId="jumlahStok"
                       type="text"
                       placeholder="Jumlah Stok"
                       className="form-control"
-                      ref="jumlahStok"
                       onChange={this.changeForm('jumlah_stok')}
                       value={jumlah_stok}
                       required="true"
@@ -260,21 +276,17 @@ export default class penjualan extends Component {
                   <br />
                   <div className="row-flex col-3 ">
                     <input
-                      inputId="HargaMin"
                       type="text"
                       placeholder="Harga Minimal"
                       className="form-control"
-                      ref="HargaMin"
                       onChange={this.changeForm('harga_minimal')}
                       required="true"
                       value={harga_minimal}
                     />
                     <input
-                      inputId="hargaMax"
                       type="text"
                       placeholder="Harga Maksimal"
                       className="form-control"
-                      ref="hargaMax"
                       onChange={this.changeForm('harga_maksimal')}
                       required="true"
                       value={harga_maksimal}
@@ -295,7 +307,6 @@ export default class penjualan extends Component {
                   </p>
                   <FormGroup controlId="formControlsTextareateksarea">
                     <FormControl
-                      componentclassName="textarea"
                       placeholder="Masukkan Deskripsi Produk"
                       required="true"
                       value={deskripsi}
@@ -309,14 +320,14 @@ export default class penjualan extends Component {
                     <FieldGroup
                       id="formControlsFile1"
                       type="file"
-                      onChange={this.changeForm('file1')}
-                      value={foto1}
+                      onChange={this.changeForm('foto1')}
+                      filename={foto1}
                     />
                     <FieldGroup
                       id="formControlsFile2"
                       type="file"
-                      onChange={this.changeForm('file2')}
-                      value={foto2}
+                      onChange={this.changeForm('foto2')}
+                      filename={foto2}
                     />
                   </div>
                   <br />
@@ -324,14 +335,14 @@ export default class penjualan extends Component {
                     <FieldGroup
                       id="formControlsFile3"
                       type="file"
-                      onChange={this.changeForm('file3')}
-                      value={foto3}
+                      onChange={this.changeForm('foto3')}
+                      filename={foto3}
                     />
                     <FieldGroup
                       id="formControlsFile4"
                       type="file"
-                      onChange={this.changeForm('file4')}
-                      value={foto4}
+                      onChange={this.changeForm('foto4')}
+                      filename={foto4}
                     />
                   </div>
                 </Modal.Body>
