@@ -69,7 +69,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     {...rest}
     render={
       (props) => {
-        console.log(props)
         if (IS_LOGGEDIN) {
           if (props.location.pathname.startsWith(`/${USER_LEVEL()}`)) {
             return <Component {...props} />
@@ -105,25 +104,25 @@ const Main = () => (
       <Route path='/gantikatasandi' component={gantikatasandi}/>
 
 
-      <PrivateRoute path='/non-petani/hubungiKami' component={hubungiKamiNonPetani}/>
+      <PrivateRoute path='/non-petani/hubungiKami' component={hubungiKamiPetani}/>
       <PrivateRoute path='/non-petani/pesan' component={pesanNonPetani}/>
 
       <PrivateRoute path='/petani/penjualan' component={penjualanPetani}/>
-      <PrivateRoute path='/petani/mitrapetani' component={mitraPetani}/>
+      <PrivateRoute path='/petani/mitra' component={mitraPetani}/>
       <PrivateRoute path='/petani/hubungiKami' component={hubungiKamiPetani}/>
       <PrivateRoute path='/petani/transPenjualan' component={transPenjualanPetani}/>
       <PrivateRoute path='/petani/pesan' component={pesanPetani}/>
 
 
       <PrivateRoute path='/mitra/penjualan' component={penjualanPetani}/>
-      <PrivateRoute path='/mitra/mitraBerjejaring' component={mitraBerjejaring}/>
-      <PrivateRoute path='/mitra/hubungiKami' component={hubungiKamiMitra}/>
+      <PrivateRoute path='/mitra/mitra' component={mitraBerjejaring}/>
+      <PrivateRoute path='/mitra/hubungiKami' component={hubungiKamiPetani}/>
       <PrivateRoute path='/mitra/transPenjualan' component={transPenjualanPetani}/>
 
-      <PrivateRoute path='/perusahaan/penjualan' component={penjualanPerusahaan}/>
-      <PrivateRoute path='/perusahaan/hubungiKami' component={hubungiKamiPerusahaan}/>
+      <PrivateRoute path='/perusahaan/penjualan' component={penjualanPetani}/>
+      <PrivateRoute path='/perusahaan/hubungiKami' component={hubungiKamiPetani}/>
       <PrivateRoute path='/perusahaan/pesan' component={pesanPerusahaan}/>
-      <PrivateRoute path='/perusahaan/transPenjualan' component={transPenjualanPerusahaan}/>
+      <PrivateRoute path='/perusahaan/transPenjualan' component={transPenjualanPetani}/>
 
 
 
