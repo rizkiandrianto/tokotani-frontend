@@ -79,6 +79,8 @@ export default class penjualan extends Component {
       this.setState({
         show: false,
         data
+      }, ()=> {
+        this.getData();
       });
     })
   }
