@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import headerDashboard from '../components/partial/headerDashboard'
 import home from '../components/page/Home'
 import login from '../components/page/Login'
@@ -28,42 +28,102 @@ import hubungiKamiPerusahaan from '../components/page/perusahaan/hubungiKami'
 import transPenjualanPerusahaan from '../components/page/perusahaan/transPenjualan'
 import pesanPerusahaan from '../components/page/perusahaan/pesan'
 
+import helpers from '../helpers'
+
+const { IS_LOGGEDIN, PROFILE, USER_LEVEL } = helpers;
+
+
+/*
+  ======================= DOKUMENTASI
+
+  USER LEVEL
+  1 = PETANI
+  2 = NON_PETANI
+  3 = PERUSAHAAN
+  4 = MITRA
+ */
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
 // and /schedule routes will match any pathname that starts
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
+const renderHome = () => {
+  switch (PROFILE.level) {
+    case '1':
+      return penjualanPetani;
+    case '2':
+      return hubungiKamiPetani;
+    case '3':
+      return penjualanPetani;
+    case '4':
+      return penjualanPetani;
+    default:
+      break;
+  }
+  return ;
+}
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={
+      (props) => {
+        if (IS_LOGGEDIN) {
+          if (props.location.pathname.startsWith(`/${USER_LEVEL()}`)) {
+            return <Component {...props} />
+          }
+
+          return <Redirect to={{
+            pathname: `/${USER_LEVEL()}/penjualan`,
+            state: {
+              from: props.location
+            }
+          }} />
+        }
+        return (
+          <Redirect to={{
+            pathname: '/login',
+            state: {
+              from: props.location
+            }
+          }} />
+        )
+    }
+    } />
+)
+
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={login}/>
+      <Route exact path='/' component={IS_LOGGEDIN ? renderHome() : login}/>
+      <Route exact path='/home' component={home}/>
       <Route path='/login' component={login}/>
       <Route path='/register' component={register}/>
       <Route path='/lupaPassword' component={lupakatasandi}/>
       <Route path='/gantikatasandi' component={gantikatasandi}/>
 
 
-      <Route path='/non-petani/hubungiKami' component={hubungiKamiNonPetani}/>
-      <Route path='/non-petani/pesan' component={pesanNonPetani}/>
+      <PrivateRoute path='/non-petani/hubungiKami' component={hubungiKamiPetani}/>
+      <PrivateRoute path='/non-petani/pesan' component={pesanNonPetani}/>
 
-      <Route path='/petani/penjualan' component={penjualanPetani}/>
-      <Route path='/petani/mitrapetani' component={mitraPetani}/>
-      <Route path='/petani/hubungiKami' component={hubungiKamiPetani}/>
-      <Route path='/petani/transPenjualan' component={transPenjualanPetani}/>
-      <Route path='/petani/pesan' component={pesanPetani}/>
+      <PrivateRoute path='/petani/penjualan' component={penjualanPetani}/>
+      <PrivateRoute path='/petani/mitra' component={mitraPetani}/>
+      <PrivateRoute path='/petani/hubungiKami' component={hubungiKamiPetani}/>
+      <PrivateRoute path='/petani/transPenjualan' component={transPenjualanPetani}/>
+      <PrivateRoute path='/petani/pesan' component={pesanPetani}/>
 
-      
-      <Route path='/mitra/penjualan' component={penjualanMitra}/>
-      <Route path='/mitra/mitraBerjejaring' component={mitraBerjejaring}/>
-      <Route path='/mitra/hubungiKami' component={hubungiKamiMitra}/>
-      <Route path='/mitra/transPenjualan' component={transPenjualanMitra}/>
 
-      <Route path='/perusahaan/penjualan' component={penjualanPerusahaan}/>
-      <Route path='/perusahaan/hubungiKami' component={hubungiKamiPerusahaan}/>
-      <Route path='/perusahaan/pesan' component={pesanPerusahaan}/>
-      <Route path='/perusahaan/transPenjualan' component={transPenjualanPerusahaan}/>
-      
+      <PrivateRoute path='/mitra/penjualan' component={penjualanPetani}/>
+      <PrivateRoute path='/mitra/mitra' component={mitraBerjejaring}/>
+      <PrivateRoute path='/mitra/hubungiKami' component={hubungiKamiPetani}/>
+      <PrivateRoute path='/mitra/transPenjualan' component={transPenjualanPetani}/>
+
+      <PrivateRoute path='/perusahaan/penjualan' component={penjualanPetani}/>
+      <PrivateRoute path='/perusahaan/hubungiKami' component={hubungiKamiPetani}/>
+      <PrivateRoute path='/perusahaan/pesan' component={pesanPerusahaan}/>
+      <PrivateRoute path='/perusahaan/transPenjualan' component={transPenjualanPetani}/>
+
 
 
     </Switch>
