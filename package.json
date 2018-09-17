@@ -24,6 +24,7 @@
     "react-datepicker": "^1.4.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
+    "react-script": "^2.0.5",
     "react-scripts": "1.1.1",
     "react-select": "^1.2.1",
     "reactstrap": "^6.0.1",

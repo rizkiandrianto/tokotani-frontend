@@ -59,16 +59,16 @@ export default class hubungiKami extends Component {
               value={kategori} onChange={this.onChange('kategori')}
               >
               <option value="10">Kategori</option>
-              <option value="20">Pembelian</option>
-              <option value="30">Penjualan</option>
-              <option value="40">Pengiriman</option>
+              <option value="Pembelian">Pembelian</option>
+              <option value="Penjualan">Penjualan</option>
+              <option value="Pengiriman">Pengiriman</option>
             </select>
             <br />
           </div>
           <br />
           <div className="row-flex col-2">
             <FormControl value={deskripsi} onChange={this.onChange('deskripsi')} className="textarea" placeholder="Masukkan Deskripsi Pertanyaan" required="true" />
-            <button type="submit" className="button-secondary btn-red-dash">Upload Gambar</button>
+             {/* <button type="submit" className="button-secondary btn-red-dash">Upload Gambar</button> */}
           </div>
           <div>
           </div>

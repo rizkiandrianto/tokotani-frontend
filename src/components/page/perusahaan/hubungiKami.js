@@ -52,7 +52,7 @@ render() {
           <br/>
           <div className="row-flex col-2">
              <FormControl className="textarea" placeholder="Masukkan Deskripsi Pertanyaan" required="true"/>
-             <button type="submit" className="button-secondary btn-red-dash">Upload Gambar</button>    
+             {/* <button type="submit" className="button-secondary btn-red-dash">Upload Gambar</button> */}    
            </div>
           <div>
         </div>  

@@ -37,7 +37,7 @@ export default class Sidebar extends Component {
                             <NavItem href={`/${USER_LEVEL()}/transpenjualan`} eventKey={5}><img className="images" src={`/${'images/transaksiPenjualan.svg'}`}/><span className="none">Transaksi Penjualan</span></NavItem>
                             <NavItem eventKey={6}><img className="images" src={`/${'images/transaksiPembelian.svg'}`}/><span className="none">Transaksi Pembelian</span></NavItem>
                             <NavItem href={`/${USER_LEVEL()}/hubungiKami`} eventKey={7}><img className="images" src={`/${'images/hubungiKami.svg'}`}/><span className="none">Hubungi Kami</span></NavItem>
-                            <NavItem eventKey={7} onClick={this.logout}><img className="images" src={`/${'images/right-arrow.svg'}`}/><span className="none">Logout</span></NavItem>
+                            <NavItem eventKey={7} onClick={this.logout}><img className="images" src={`/${'images/logout.svg'}`}/><span className="none">Logout</span></NavItem>
                             <NavItem eventKey={7} onClick={this.toggleSidebar}><img className="images" src={`/${'images/right-arrow.svg'}`}/><span className="none">Tutup</span></NavItem>
                         </Nav>
                     </Navbar.Collapse>

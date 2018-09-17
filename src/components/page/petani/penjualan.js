@@ -135,6 +135,7 @@ export default class penjualan extends Component {
         x.deskripsi.toLowerCase().indexOf(search) > -1
       ))
       .map((item, index) => (
+
         <tr key={index}>
           <td><img className="imgtable" src={`${API_SERVER}/images/${item.foto1}`} /></td>
           <td>{item.judul_produk}</td>
@@ -240,7 +241,7 @@ export default class penjualan extends Component {
                       <option value="bibit">Bibit Tanaman</option>
                       <option value="buah">Buah-buahan</option>
                       <option value="sayur">Sayuran</option>
-                      <option value="tanaman">Tanaman Hias</option>
+                      <option value="tanaman hias">Tanaman Hias</option>
                     </select>
                   </div>
                   <br />
@@ -297,8 +298,8 @@ export default class penjualan extends Component {
                       onChange={this.changeForm('transportasi')}
                       >
                       <option>Transportasi</option>
-                      <option value="mitraPetani">Mitra Petani</option>
-                      <option value="no">Tidak Ada</option>
+                      <option value="Mitra Petani">Mitra Petani</option>
+                      <option value="Kurir">Tidak Ada</option>
                     </select>
                   </div>
                   <br />
@@ -360,10 +361,10 @@ export default class penjualan extends Component {
               <tr>
                 <th><b>Foto Produk</b></th>
                 <th><b>Nama Produk</b></th>
-                <th><b>Harga</b></th>
+                <th><b>Harga Minimal</b></th>
                 <th><b>Deskripsi</b></th>
                 <th><b>Transportasi</b></th>
-                <th><b>Tanggal Di Jual</b></th>
+                <th></th>
                 <th><b>Stok</b></th>
                 <th><b>Aksi</b></th>
               </tr>

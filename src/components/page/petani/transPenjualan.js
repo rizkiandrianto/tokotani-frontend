@@ -22,7 +22,10 @@ export default class transPenjualan extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleBatal = this.handleBatal.bind(this), this.handleShow.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit2 = this.handleSubmit2.bind(this);
     this.handleProses = this.handleProses.bind(this);
+    this.handleProses2 = this.handleProses2.bind(this);
+    this.handleProses3 = this.handleProses3.bind(this);
 
     this.state = {
       show: false,
@@ -42,6 +45,42 @@ export default class transPenjualan extends Component {
       })
     };
   }
+
+  handleProses2(id) {
+    return () => {
+      Request.get(`/StatusPengiriman?id_tp=${id}`)
+      .then(res => {
+        this.getData();
+      })
+    };
+  }
+
+  handleProses3(id) {
+    return () => {
+      Request.get(`/DaftarPenjualan?id_tp=${id}`)
+      .then(res => {
+        this.getData();
+      })
+    };
+  }
+
+  handleSubmit2() {
+    console.log('clicked')
+    Request.post('/NomorPengiriman', this.state)
+    .then(res => {
+      this.setState({ show: false });
+      
+    })
+  }
+
+  onChange(name) {
+    return (e) => {
+      this.setState({
+        [name]: e.target.value
+      });
+    }
+  }
+
 
   handleClose() {
     this.setState({ show: false });
@@ -86,7 +125,7 @@ export default class transPenjualan extends Component {
               <p><b>Metode Pengiriman :</b>&nbsp;&nbsp;&nbsp;{item.metode_pengiriman}</p>
               <p><b>Pesanan :</b>&nbsp;&nbsp;&nbsp;{item.pesanan}</p>
               <p><b>Catatan Untuk Penjual :</b>&nbsp;&nbsp;&nbsp;{item.catatan}</p>
-              <p><b>Status :</b>&nbsp;&nbsp;&nbsp;<i>{item.status}</i></p>
+              <p><b>Status :</b>&nbsp;&nbsp;&nbsp;Pembayaran Telah Diterima</p>
             </div>
             <div class="price">Rp.{item.harga}</div>
             <a
@@ -106,7 +145,7 @@ export default class transPenjualan extends Component {
   }
 
   renderKonfirmasiPengiriman() {
-    const { transaksi } = this.state;
+    const { transaksi, nomor_pengiriman } = this.state;
     if (transaksi.length) {
       return transaksi.filter(x => x.status == 2).map((item, index) => (
         <div class="social-share-wrap ">
@@ -125,9 +164,19 @@ export default class transPenjualan extends Component {
               <p><b>Catatan Untuk Penjual :</b>&nbsp;&nbsp;&nbsp;{item.catatan}</p>
               <p><b>Status :</b>&nbsp;&nbsp;&nbsp;Menunggu di Proses oleh Penjual</p>
             </div>
-            <div class="price">Rp.{item.harga}</div>
+            <div class="price">Rp.{item.harga}
+            <a
+            class="buy"
+            id="uncontrolled-tab-example-tab-2"
+            role="tab"
+            target="uncontrolled-tab-example-tab-2"
+            onClick={this.handleProses2(item.id_transPenjualan)}
+            >
+              <i class="fa fa-shopping-cart"></i>Proses
+            </a>
+            </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="submit" className="button-primary btn-red-dash" onClick={this.handleShow}>Masukkan Nomor Resi</button>
+            <button type="submit" className="button-primary btn-red-dash" onClick={this.handleShow}>Masukkan Nomor Pengiriman</button>
             <Modal show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
                 <div className="box-top row-flex flex-space">
@@ -136,15 +185,16 @@ export default class transPenjualan extends Component {
               </Modal.Header>
               <Modal.Body>
                 <p>
-                  Silahkan Masukkan Nomor Resi
+                  Silahkan Masukkan Nomor Resi Atau Plat Nomor Pengirim
                           </p> <br />
                 <div className="row-flex col-2 ">
                   <input
-                    inputId="judulBarang"
+                    
                     type="text"
-                    placeholder="Nomor Resi"
+                    placeholder="Nomor Resi/Plat Nomor"
                     class="form-control"
-                    handleChange={this._handleChange}
+                    value={nomor_pengiriman} 
+                    onChange={this.onChange('nomor_pengiriman')}
                     required="true"
                   />
                 </div>
@@ -152,7 +202,7 @@ export default class transPenjualan extends Component {
               </Modal.Body>
 
               <div className="row-flex col-2">
-                <button type="submit" className="button-primary btn-red-dash btn-popup" onClick={this.handleSubmit}>Kirim</button>
+                <button type="submit" className="button-primary btn-red-dash btn-popup" onClick={this.handleSubmit2}>Kirim</button>
                 <button type="submit" className="button-secondary btn-red-dash btn-popup" onClick={this.handleClose}>Batal</button>
               </div>
 
@@ -185,6 +235,15 @@ export default class transPenjualan extends Component {
             <p><b>Status :</b>&nbsp;&nbsp;&nbsp;<i>Sedang Dalam Pengiriman</i></p>
           </div>
           <div class="price">Rp.{item.harga}</div>
+          <a
+            class="buy"
+            id="uncontrolled-tab-example-tab-2"
+            role="tab"
+            target="uncontrolled-tab-example-tab-2"
+            onClick={this.handleProses3(item.id_transPenjualan)}
+            >
+              <i class="fa fa-shopping-cart"></i>Selesai
+            </a>
         </div>
       </div>
     ))
