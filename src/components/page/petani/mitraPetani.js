@@ -11,6 +11,7 @@ import '../../../css/component/common/inputForm.css';
 import '../../../css/component/common/button.css';
 import Sidebar from '../../partial/Sidebar';
 import helpers from '../../../helpers';
+import ReactTable from "react-table";
 
 const { Request } = helpers;
 export default class penjualan extends Component {
@@ -30,7 +31,38 @@ export default class penjualan extends Component {
       data: [],
       form: {
         search: ''
-      }
+      },
+      columns: [
+        {
+          Header: <strong>Nama</strong>,
+          accessor: 'nama'
+        },
+        {
+          Header: <strong>Alamat</strong>,
+          accessor: 'alamat'
+        },
+        {
+          Header: <strong>No. Telp</strong>,
+          accessor: 'no_telp'
+        },
+        {
+          Header: <strong>Minimal Kuantiti</strong>,
+          accessor: 'min_kuantiti'
+        },
+        {
+          Header: <strong>Maximal Kuantiti</strong>,
+          accessor: 'maks_kuantiti'
+        },
+        {
+          Header: <strong>Harga</strong>,
+          accessor: 'harga'
+        },
+        {
+          Header: <strong>Aksi</strong>,
+          accessor: 'id_mitrapetani',
+          Cell: props => <a onClick={this.hapusMitra(props.value)}>Hapus</a>
+        },
+      ]
     };
   }
 
@@ -130,7 +162,7 @@ export default class penjualan extends Component {
           </Popover>
     );
     const tooltip = <Tooltip id="modal-tooltip">wow.</Tooltip>;
-    const { data, form } = this.state;
+    const { data, form, columns } = this.state;
     const { nama, kota, no_telp, alamat, min_kuantiti, maks_kuantiti, harga, search } = form;
     return (
       <div>
@@ -246,23 +278,10 @@ export default class penjualan extends Component {
               </Modal>
             </div>
           </div>
-          <table>
-            <thead>
-              <tr>
-                <th><b>Nama</b></th>
-                <th><b>Alamat</b></th>
-                <th><b>No.Telp</b></th>
-                <th><b>Minimal Kuantiti</b></th>
-                <th><b>Maximal Kuantiti</b></th>
-                <th><b>Harga</b></th>
-                <th><b>Aksi</b></th>
-              </tr>
-            </thead>
-            <br />
-            <tbody>
-              {this.renderList()}
-            </tbody>
-          </table>
+          <ReactTable data={data.filter(x => (
+            x.alamat.toLowerCase().indexOf(form.search.toLowerCase()) > -1 ||
+            x.nama.toLowerCase().indexOf(form.search.toLowerCase()) > -1
+          ))} columns={columns} minRows={0} />
         </div>
 
 

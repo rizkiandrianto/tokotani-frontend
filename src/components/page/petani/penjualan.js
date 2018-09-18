@@ -11,6 +11,7 @@ import '../../../css/component/common/inputForm.css';
 import '../../../css/component/common/button.css';
 import Sidebar from '../../partial/Sidebar';
 import helpers from '../../../helpers';
+import ReactTable from "react-table";
 
 const { Request, API_SERVER } = helpers;
 export default class penjualan extends Component {
@@ -30,7 +31,40 @@ export default class penjualan extends Component {
       show: false,
       data: [],
       form: {},
-      search: ""
+      search: "",
+      columns: [
+        {
+          Header: <strong>Foto Produk</strong>,
+          accessor: 'foto1',
+          Cell: props => <img className="imgtable" src={`${API_SERVER}/images/${props.value}`} />
+        },
+        {
+          Header: <strong>Nama Produk</strong>,
+          accessor: 'judul_produk'
+        },
+        {
+          Header: <strong>Harga Minimal</strong>,
+          accessor: 'harga_minimal',
+          Cell: props => `Rp ${props.value}`
+        },
+        {
+          Header: <strong>Deskripsi</strong>,
+          accessor: 'deskripsi'
+        },
+        {
+          Header: <strong>Transportasi</strong>,
+          accessor: 'transportasi'
+        },
+        {
+          Header: <strong>Stok</strong>,
+          accessor: 'jumlah_stok'
+        },
+        {
+          Header: <strong>Aksi</strong>,
+          accessor: 'id_penjualan',
+          Cell: props => <a onClick={this.deleteData(props.value)}>Hapus</a>
+        },
+      ]
     };
   }
 
@@ -126,35 +160,6 @@ export default class penjualan extends Component {
       .catch(err => console.error(err))
   }
 
-  renderData() {
-    const { data, search } = this.state;
-
-    if (data.length) {
-      return data.filter(x => (
-        x.judul_produk.toLowerCase().indexOf(search) > -1 ||
-        x.deskripsi.toLowerCase().indexOf(search) > -1
-      ))
-      .map((item, index) => (
-
-        <tr key={index}>
-          <td><img className="imgtable" src={`${API_SERVER}/images/${item.foto1}`} /></td>
-          <td>{item.judul_produk}</td>
-          <td>Rp. {item.harga_minimal}</td>
-          <td>{item.deskripsi}</td>
-          <td>{item.transportasi}</td>
-          <td>{null}</td>
-          <td>{item.jumlah_stok}</td>
-          <td><a onClick={this.deleteData(item.id_penjualan)}>Hapus</a></td>
-        </tr>
-      ));
-    }
-    return (
-      <tr>
-        <td colSpan="8" className="text-center">Data is Empty</td>
-      </tr>
-    );
-  }
-
 
   render() {
     function FieldGroup({ id, label, help, ...props }) {
@@ -166,7 +171,7 @@ export default class penjualan extends Component {
     }
 
     const tooltip = <Tooltip id="modal-tooltip">wow.</Tooltip>;
-    const { form, data } = this.state;
+    const { form, data, columns, search } = this.state;
     const {
       judul_produk,
       kategori,
@@ -356,24 +361,10 @@ export default class penjualan extends Component {
               </Modal>
             </div>
           </div>
-          <table>
-            <thead>
-              <tr>
-                <th><b>Foto Produk</b></th>
-                <th><b>Nama Produk</b></th>
-                <th><b>Harga Minimal</b></th>
-                <th><b>Deskripsi</b></th>
-                <th><b>Transportasi</b></th>
-                <th></th>
-                <th><b>Stok</b></th>
-                <th><b>Aksi</b></th>
-              </tr>
-            </thead>
-            <br />
-            <tbody>
-              {this.renderData()}
-            </tbody>
-          </table>
+          <ReactTable data={data.filter(x => (
+            x.judul_produk.toLowerCase().indexOf(search.toLowerCase()) > -1 ||
+            x.deskripsi.toLowerCase().indexOf(search.toLowerCase()) > -1
+          ))} columns={columns} minRows={0} />
         </div>
 
 
