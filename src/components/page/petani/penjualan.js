@@ -73,25 +73,28 @@ export default class penjualan extends Component {
     const { data, foto1 } = this.state;
     let dataTemp = new FormData();
     dataTemp.append('foto1', foto1);
+    const warning = window.confirm('Are you sure?');
+    if (warning) {
+      Request.post('/coba', dataTemp)
+      .then(e => {
+        Request.post('/tambahPenjualan', {
+          ...this.state.form
+        })
+        .then(res => {
+          alert('Data berhasil ditambah');
+          let data_ = data;
+          data_.push({...this.state.form});
+          this.setState({
+            show: false,
+            data
+          }, () => {
+            this.getData();
+          });
 
-    Request.post('/coba', dataTemp)
-    .then(e => {
-      Request.post('/tambahPenjualan', {
-        ...this.state.form
-      })
-      .then(res => {
-        let data_ = data;
-        data_.push({...this.state.form});
-        this.setState({
-          show: false,
-          data
-        }, () => {
-          this.getData();
-        });
-
-      })
-      .catch(err => console.error(err))
-    });
+        })
+        .catch(err => console.error(err))
+      });
+    }
   }
 
   handleShow() {
@@ -100,14 +103,18 @@ export default class penjualan extends Component {
 
   deleteData(id) {
     return () => {
-      Request.get(`/hapusPenjualan?id_penjualan=${id}`)
-      .then(res => {
-        let { data } = this.state;
-        data = data.filter(x => x.id_penjualan !== id);
-        this.setState({
-          data
-        });
-      })
+      const warning = window.confirm('Are you sure?');
+      if (warning) {
+        Request.get(`/hapusPenjualan?id_penjualan=${id}`)
+        .then(res => {
+          alert('Data berhasil terhapus');
+          let { data } = this.state;
+          data = data.filter(x => x.id_penjualan !== id);
+          this.setState({
+            data
+          });
+        })
+      }
     };
   }
 
