@@ -20,7 +20,7 @@ export default class transPenjualan extends Component {
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleBatal = this.handleBatal.bind(this), this.handleShow.bind(this);
+    this.handleBatal = this.handleBatal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSubmit2 = this.handleSubmit2.bind(this);
     this.handleProses = this.handleProses.bind(this);
@@ -39,38 +39,52 @@ export default class transPenjualan extends Component {
 
   handleProses(id) {
     return () => {
-      Request.get(`/KonfirmasiPengiriman?id_tp=${id}`)
-      .then(res => {
-        this.getData();
-      })
+      const warning = window.confirm('Are you sure?');
+      if (warning) {
+        Request.get(`/KonfirmasiPengiriman?id_tp=${id}`)
+        .then(res => {
+          alert('Berhasil');
+          this.getData();
+        })
+      }
     };
   }
 
   handleProses2(id) {
     return () => {
-      Request.get(`/StatusPengiriman?id_tp=${id}`)
-      .then(res => {
-        this.getData();
-      })
+      const warning = window.confirm('Are you sure?');
+      if (warning) {
+        Request.get(`/StatusPengiriman?id_tp=${id}`)
+        .then(res => {
+          alert('Berhasil');
+          this.getData();
+        })
+      }
     };
   }
 
   handleProses3(id) {
     return () => {
-      Request.get(`/DaftarPenjualan?id_tp=${id}`)
-      .then(res => {
-        this.getData();
-      })
+      const warning = window.confirm('Are you sure?');
+      if (warning) {
+        Request.get(`/DaftarPenjualan?id_tp=${id}`)
+        .then(res => {
+          alert('Berhasil');
+          this.getData();
+        })
+      }
     };
   }
 
   handleSubmit2() {
-    console.log('clicked')
-    Request.post('/NomorPengiriman', this.state)
-    .then(res => {
-      this.setState({ show: false });
-      
-    })
+    const warning = window.confirm('Are you sure?');
+    if (warning) {
+      Request.post('/NomorPengiriman', this.state)
+      .then(res => {
+        alert('Berhasil');
+        this.setState({ show: false });
+      })
+    }
   }
 
   onChange(name) {
@@ -189,11 +203,11 @@ export default class transPenjualan extends Component {
                           </p> <br />
                 <div className="row-flex col-2 ">
                   <input
-                    
+
                     type="text"
                     placeholder="Nomor Resi/Plat Nomor"
                     class="form-control"
-                    value={nomor_pengiriman} 
+                    value={nomor_pengiriman}
                     onChange={this.onChange('nomor_pengiriman')}
                     required="true"
                   />
