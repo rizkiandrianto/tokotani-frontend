@@ -51,13 +51,17 @@ export default class penjualan extends Component {
 
   hapusMitra(id) {
     return () => {
-      Request.get(`/hapusMitraPetani?id_mitrapetani=${id}`)
-      .then(res => {
-        const data = this.state.data.filter(x => x.id_mitrapetani != id);
-        this.setState({
-          data
-        });
-      })
+      const warning = window.confirm('Are you sure?');
+      if (warning) {
+        Request.get(`/hapusMitraPetani?id_mitrapetani=${id}`)
+        .then(res => {
+          alert('Data terhapus');
+          const data = this.state.data.filter(x => x.id_mitrapetani != id);
+          this.setState({
+            data
+          });
+        })
+      }
     }
   }
 
@@ -70,19 +74,23 @@ export default class penjualan extends Component {
   }
 
   handleSubmit() {
-    Request.post('/tambahMitraPetani', {
-      ...this.state.form
-    })
-    .then(res => {
-      const { data } = this.state;
-      data.push(this.state.form);
-      this.setState({
-        show: false,
-        data
-      }, ()=> {
-        this.getData();
-      });
-    })
+    const warning = window.confirm('Are you sure?');
+    if (warning) {
+      Request.post('/tambahMitraPetani', {
+        ...this.state.form
+      })
+      .then(res => {
+        alert('Berhasil tambah mitra');
+        const { data } = this.state;
+        data.push(this.state.form);
+        this.setState({
+          show: false,
+          data
+        }, ()=> {
+          this.getData();
+        });
+      })
+    }
   }
 
   handleShow() {
